@@ -79,7 +79,7 @@ def handle_client(client_socket, client_address):
                     logging.info(f"X-Forwarded-For header found: {x_forwarded_for}")
 
                     # Optionally geolocate the X-Forwarded-For IP address
-                    geolocation_data = get_geolocation(x_forwarded_for)
+                    geolocation_data = get_geolocation(x_forwarded_for.split(",", 1)[0])
                     if geolocation_data:
                         logging.info(f"Geolocation data for X-Forwarded-For {x_forwarded_for}: {json.dumps(geolocation_data, indent=2)}")
                 else:
